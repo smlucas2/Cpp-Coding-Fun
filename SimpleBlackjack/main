@@ -36,10 +36,15 @@ bool playBlackJack()
 		if (playerScore > 21) {
 			break;
 		}
-
-		std::cout << "Hit or Stand? (Type H or S)" << std::endl;
-		std::cin >> decision;
-		std::cout << "\n";
+	
+		do {
+			std::cout << "Hit or Stand? (Type H or S)" << std::endl;
+			std::cin >> decision;
+			std::cout << "\n";
+			if (decision != "H" && decision != "S") {
+				std::cout << "Please respond with H or S." << std::endl;
+			}
+		} while (decision != "H" && decision != "S");
 
 		if (decision == "H") {
 			playerScore += deck.dealCard(true).getCardValue();
@@ -67,11 +72,16 @@ int main()
 	do {
 		playBlackJack();
 
-		std::cout << "Would you like to play again? (Y/N)" << std::endl;
-		char play;
-		std::cin >> play;
+		std::string play;
+		do {
+			std::cout << "Would you like to play again? (Y/N)" << std::endl;
+			std::cin >> play;
+			if (play != "N" && play != "Y") {
+				std::cout << "Please respond with Y or N." << std::endl;
+			}
+		} while (play != "N" && play != "Y");
 
-		if (play == 'N') {
+		if (play == "N") {
 			playAgain = false;
 		}
 
