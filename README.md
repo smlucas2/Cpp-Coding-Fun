@@ -1,4 +1,2 @@
-# Simple-Blackjack
-A text based game of blackjack player on the computer console.
-
-My first attempts at actually utilizing C++ for coding.
+# Coding with Cpp
+Working on various projects to get a better understanding of this computer language.
