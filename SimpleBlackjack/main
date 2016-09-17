@@ -1,0 +1,82 @@
+#include <iostream>
+#include <array>
+#include <string>
+#include "Card.h"
+#include "Deck.h"
+
+void tellPlayerScore(int x)
+{
+	std::cout << "Your score is " << x << "\n" << std::endl;
+}
+
+bool playBlackJack()
+{
+	Deck deck;
+	deck.shuffleDeck();
+
+	int playerScore{ 0 };
+	int dealerScore{ 0 };
+
+	playerScore += deck.dealCard(true).getCardValue();
+	tellPlayerScore(playerScore);
+	playerScore += deck.dealCard(true).getCardValue();
+	tellPlayerScore(playerScore);
+	dealerScore += deck.dealCard(false).getCardValue();
+
+	std::string decision;
+	
+	while (decision != "S" || playerScore <= 21 || dealerScore <= 21) {
+		while (dealerScore < 17 && decision == "S") {
+			dealerScore += deck.dealCard(false).getCardValue();
+		}
+
+		if (dealerScore >= 17) {
+			break;
+		}
+		if (playerScore > 21) {
+			break;
+		}
+
+		std::cout << "Hit or Stand? (Type H or S)" << std::endl;
+		std::cin >> decision;
+		std::cout << "\n";
+
+		if (decision == "H") {
+			playerScore += deck.dealCard(true).getCardValue();
+			tellPlayerScore(playerScore);
+		}
+	}
+
+	std::cout << "Your score is " << playerScore << "\n" << "The dealer's score is " << dealerScore << std::endl;
+	std::cout << "\n";
+
+	if (dealerScore > 21 || (playerScore > dealerScore && playerScore <= 21)) {
+		std::cout << "You win!" << std::endl;
+		return true;
+	}
+	else {
+		std::cout << "You lose!" << std::endl;
+		return false;
+	}
+}
+
+int main()
+{
+	bool playAgain = true;
+
+	do {
+		playBlackJack();
+
+		std::cout << "Would you like to play again? (Y/N)" << std::endl;
+		char play;
+		std::cin >> play;
+
+		if (play == 'N') {
+			playAgain = false;
+		}
+
+		std::cout << "\n";
+	} while (playAgain);
+
+	return 0;
+}
