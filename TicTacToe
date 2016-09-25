@@ -245,11 +245,12 @@ int main()
 		counter++;
 		printGrid(grid);
 		win = winCondition(grid);
-		
-		//Makes it look like the computer is thinking about its next more.
-		Sleep(2000);
 
 		if (win == 0 && counter < 9) {
+			//Makes it look like the computer is thinking about its next more.
+			std::cout << "The computer is thinking...\n";
+			Sleep(2000);
+			
 			computerChoosing(compSelection, placed, grid);
 			placeCharacter(grid, compSelection, 'O');
 			counter++;
@@ -265,7 +266,7 @@ int main()
 		std::cout << "You Lose!\n";
 	}
 	if (win == 0) {
-		std::cout << "Tie!\n";
+		std::cout << "No moves left, tie!\n";;
 	}
 
 	int x;
