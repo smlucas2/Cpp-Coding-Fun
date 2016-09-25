@@ -266,7 +266,7 @@ int main()
 		std::cout << "You Lose!\n";
 	}
 	if (win == 0) {
-		std::cout << "No moves left, tie!\n";;
+		std::cout << "No moves left, tie!\n";
 	}
 
 	int x;
